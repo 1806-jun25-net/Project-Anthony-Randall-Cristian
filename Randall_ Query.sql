@@ -43,6 +43,32 @@ CREATE TABLE ZRV_Pub.Locations (
 
 Create Table MenuPreBuilt(
 Id Int Identity Primary Key,
+NameOfMenu NVARCHAR(255) NOT NULL,
+);
+
+Create Table MenuPrebuilt_Has_Orders(
+Id int Identity Primary Key,
+MenuPreBuildID int not null,
+OrdersId int not null,
+constraint FK_Orders_ID Foreign key (OrdersId)
+References ZRV_Pub.Orders(OrderId)
+);
 
 
+Create Table Custom_Has_Inventory(
+
+
+);
+
+
+Create Table MenuPreBuilt_Has_Inventory(
+Id int identity Primary Key,
+MenuPreBuildId int not null,
+InventoryId int not null,
+Quantity int not null,
+
+Constraint FK_MenuPreBuild_ID Foreign key (MenuPreBuildId)
+References ZRV_Pub.MenuPreBuilt(Id),
+constraint FK_Inventory_ID Foreign key (InventoryId)
+References ZRV_Pub.Inventory(Id)
 );
