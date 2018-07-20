@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZVRPub.Library", "ZVRPub.Library\ZVRPub.Library.csproj", "{44747BF2-A02A-4065-9277-B1A43BFCE0E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZVRPub.MVCFrontEnd", "ZVRPub.MVCFrontEnd\ZVRPub.MVCFrontEnd.csproj", "{BFF59371-B853-4083-BE62-B156CC3484D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44747BF2-A02A-4065-9277-B1A43BFCE0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44747BF2-A02A-4065-9277-B1A43BFCE0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44747BF2-A02A-4065-9277-B1A43BFCE0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44747BF2-A02A-4065-9277-B1A43BFCE0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF59371-B853-4083-BE62-B156CC3484D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF59371-B853-4083-BE62-B156CC3484D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF59371-B853-4083-BE62-B156CC3484D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF59371-B853-4083-BE62-B156CC3484D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8D8399BB-7B55-4C9C-82FF-2F10B390906C}
+		SolutionGuid = {0793A895-C617-476B-AFA5-7D5D92ED250C}
 	EndGlobalSection
 EndGlobal
