@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ZVRPub.Scaffold;
 
 namespace ZVRPub.MVCFrontEnd
 {
@@ -22,6 +20,7 @@ namespace ZVRPub.MVCFrontEnd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ZVRContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ZVRPubConenction")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
