@@ -24,6 +24,11 @@ namespace ZVRPub.Scaffold
             
         }
 
+        public ZVRContext(DbContextOptions<ZVRContext> options)
+            : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Inventory>(entity =>
