@@ -40,6 +40,8 @@ namespace ZVRPub.MVCFrontEnd.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Required]
+        public bool? LevelPermission { get; set; }
 
         public string UserPic { get; set; }
     }
