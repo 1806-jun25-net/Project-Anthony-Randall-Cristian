@@ -12,7 +12,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public class UserController : Controller
     {
-        private readonly static string ServiceUri = "http://localhost:56667/";
+        private readonly static string ServiceUri = "http://localhost:56667/api/";
 
         public HttpClient HttpClient { get; }
 
@@ -47,7 +47,6 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 Console.WriteLine(ex);
                 return View("Error");
             }
-            return View();
         }
 
         // GET: User/Details/5
