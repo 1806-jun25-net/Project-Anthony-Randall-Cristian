@@ -68,7 +68,31 @@ InventoryId int not null,
 Quantity int not null,
 
 Constraint FK_MenuPreBuild_ID Foreign key (MenuPreBuildId)
-References ZRV_Pub.MenuPreBuilt(Id),
+References dbo.MenuPreBuilt(Id),
 constraint FK_Inventory_ID Foreign key (InventoryId)
 References ZRV_Pub.Inventory(Id)
 );
+
+
+Create Table ZRV_Pub.MenuCustom(
+Id Int Identity Primary Key,
+NameOfCustomMenu NVARCHAR(255) NOT NULL,
+IdOrders int Not Null,
+constraint FK_Orders_ID Foreign key (IdOrders)
+References ZRV_Pub.Orders(OrderId)
+
+);
+
+Create Table ZRV_Pub.MenuCustom_Has_Iventory_(
+Id Int Identity Primary Key,
+IdInventory int Not Null,
+IdMenuCustom int Not Null,
+
+
+Constraint FK_MenuCustom_ID Foreign key (IdMenuCustom)
+References ZRV_Pub.MenuCustom(Id),
+constraint FK_Inventory_ID_MenuCustom Foreign key (IdInventory)
+References ZRV_Pub.Inventory(Id)
+);
+
+

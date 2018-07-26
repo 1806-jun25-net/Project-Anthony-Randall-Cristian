@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZVRPub.MVCFrontEnd", "ZVRPu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZVRPub.Test", "ZVRPub.Test\ZVRPub.Test.csproj", "{A937ACEB-C59A-4E8F-95B4-9C02ADFDF514}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZVRPub.Library", "ZVRPub.Library\ZVRPub.Library.csproj", "{B0810814-6D11-4FCD-838F-42A0C80E23CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A937ACEB-C59A-4E8F-95B4-9C02ADFDF514}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A937ACEB-C59A-4E8F-95B4-9C02ADFDF514}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A937ACEB-C59A-4E8F-95B4-9C02ADFDF514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0810814-6D11-4FCD-838F-42A0C80E23CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0810814-6D11-4FCD-838F-42A0C80E23CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0810814-6D11-4FCD-838F-42A0C80E23CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0810814-6D11-4FCD-838F-42A0C80E23CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

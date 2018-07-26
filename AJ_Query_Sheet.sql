@@ -47,3 +47,6 @@ add UserPic nvarchar(100) null;
 --Foreign Key assignments
 ALTER TABLE ZRV_Pub.Orders
 ADD CONSTRAINT FK_UserId FOREIGN KEY (UserId) REFERENCES ZRV_Pub.Users(UserId);
+
+ALTER TABLE ZRV_Pub.UserLoginInfo
+ADD CONSTRAINT FK_Username FOREIGN KEY (Username) REFERENCES ZRV_Pub.Users(Username);
