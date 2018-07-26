@@ -20,8 +20,9 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            
             return View();
         }
 
