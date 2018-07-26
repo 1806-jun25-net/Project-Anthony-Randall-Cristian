@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
@@ -35,9 +37,14 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 }
 
                 string jsonString = await response.Content.ReadAsStringAsync();
+
+                List<User> user = JsonConvert.DeserializeObject<List<User>>(jsonString);
+
+                return View(user);
             }
             catch(HttpRequestException ex)
             {
+                Console.WriteLine(ex);
                 return View("Error");
             }
             return View();
