@@ -44,5 +44,9 @@ namespace ZVRPub.MVCFrontEnd.Models
         public bool? LevelPermission { get; set; }
 
         public string UserPic { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
