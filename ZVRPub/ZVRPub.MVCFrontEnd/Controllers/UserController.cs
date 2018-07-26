@@ -10,7 +10,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public class UserController : Controller
     {
-        private readonly static string ServiceUri = "";
+        private readonly static string ServiceUri = "http://localhost:56667/";
 
         public HttpClient HttpClient { get; }
 
@@ -20,8 +20,26 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public async Task<ActionResult> IndexAsync()
         {
+            var uri = ServiceUri + "user";
+            var request = new HttpRequestMessage(HttpMethod.Get, uri);
+
+            try
+            {
+                var response = await HttpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+            }
+            catch(HttpRequestException ex)
+            {
+                return View("Error");
+            }
             return View();
         }
 
@@ -46,7 +64,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
@@ -69,7 +87,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             {
                 // TODO: Add update logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
@@ -92,7 +110,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
