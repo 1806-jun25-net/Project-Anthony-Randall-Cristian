@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ZVRPub.MVCFrontEnd.Models
 {
-    public class Order
+    public class LocationOrderProcess
     {
-        public int OrderId { get; set; }
 
-        [Required]
-        public DateTime OrderTime { get; set; }
+        public int Id { get; set; }
         [Required]
         public int LocationId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int OrderId { get; set; }
+
+        
 
     }
 }

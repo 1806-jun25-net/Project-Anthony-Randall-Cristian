@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace ZVRPub.MVCFrontEnd.Models
 {
-    public class Order
+    public class MenuPreBuiltHasInventory
     {
-        public int OrderId { get; set; }
 
+        public int Id { get; set; }
         [Required]
-        public DateTime OrderTime { get; set; }
+        public int MenuPreBuildId { get; set; }
         [Required]
-        public int LocationId { get; set; }
+        public int InventoryId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int Quantity { get; set; }
+
+        
+
+
 
     }
 }

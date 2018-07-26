@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace ZVRPub.MVCFrontEnd.Models
 {
-    public class Order
+    public class MenuCustom
     {
-        public int OrderId { get; set; }
 
+
+        public int Id { get; set; }
         [Required]
-        public DateTime OrderTime { get; set; }
+        public string NameOfCustomMenu { get; set; }
         [Required]
-        public int LocationId { get; set; }
-        [Required]
-        public int UserId { get; set; }
+        public int IdOrders { get; set; }
+
+        
+
+
 
     }
 }

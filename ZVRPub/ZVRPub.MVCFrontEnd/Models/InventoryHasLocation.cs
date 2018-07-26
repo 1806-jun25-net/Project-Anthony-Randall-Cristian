@@ -4,18 +4,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace ZVRPub.MVCFrontEnd.Models
 {
-    public class Order
+    public class InventoryHasLocation
     {
-        public int OrderId { get; set; }
 
-        [Required]
-        public DateTime OrderTime { get; set; }
+        public int Id { get; set; }
         [Required]
         public int LocationId { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int InventoryId { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        
 
     }
 }
