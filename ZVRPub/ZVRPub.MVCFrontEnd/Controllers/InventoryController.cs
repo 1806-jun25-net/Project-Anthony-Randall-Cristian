@@ -5,28 +5,27 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class UserController : Controller
+    public class InventoryController : Controller
     {
+
         private readonly static string ServiceUri = "http://localhost:56667/api/";
 
         public HttpClient HttpClient { get; }
-         
 
-        public UserController(HttpClient httpClient)
+        public InventoryController(HttpClient httpClient)
         {
             HttpClient = httpClient;
         }
 
-        // GET: User
-        public async Task<ActionResult> IndexAsync(string searchString)
+        // GET: Inventory
+        public async Task<ActionResult> IndexAsync()
         {
-            var uri = ServiceUri + "user";
+            var uri = ServiceUri + "inventory";
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
             try
@@ -40,43 +39,35 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 string jsonString = await response.Content.ReadAsStringAsync();
 
-                List<User> user = JsonConvert.DeserializeObject<List<User>>(jsonString);
-
-
-                
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    user = user.Where(s => s.Username.Contains(searchString)).ToList();
-                }
-
+                List<Inventory> user = JsonConvert.DeserializeObject<List<Inventory>>(jsonString);
 
                 return View(user);
             }
-            catch(HttpRequestException ex)
+            catch (HttpRequestException ex)
             {
                 Console.WriteLine(ex);
                 return View("Error");
             }
         }
 
-        // GET: User/Details/5
+
+        // GET: Inventory/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
+        // GET: Inventory/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Inventory/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            
             try
             {
                 // TODO: Add insert logic here
@@ -89,13 +80,13 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: User/Edit/5
+        // GET: Inventory/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: Inventory/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -112,13 +103,13 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: User/Delete/5
+        // GET: Inventory/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
+        // POST: Inventory/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
