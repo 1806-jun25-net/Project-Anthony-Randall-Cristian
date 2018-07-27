@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -74,12 +75,29 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(User NewUser)
         {
-            
+            if (!ModelState.IsValid)
+            {
+                return View(NewUser);
+            }
+
             try
             {
-                // TODO: Add insert logic here
+                string jsonString = JsonConvert.SerializeObject(NewUser);
+
+                var uri = ServiceUri + "account/register";
+                var request = new HttpRequestMessage(HttpMethod.Post, uri)
+                {
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
+                };
+
+                var response = await HttpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
 
                 return RedirectToAction(nameof(IndexAsync));
             }
