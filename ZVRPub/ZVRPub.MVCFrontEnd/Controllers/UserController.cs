@@ -47,7 +47,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    user = user.Where(s => s.Username.Contains(searchString)).ToList();
+                    user = user.Where(s => s.Username.ToLower().Contains(searchString.ToLower())).ToList();
                 }
 
 
