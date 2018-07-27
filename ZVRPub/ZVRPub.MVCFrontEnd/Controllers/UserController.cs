@@ -65,7 +65,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync(User NewUser)
+        public async Task<ActionResult> Create(User NewUser)
         {
             if (!ModelState.IsValid)
             {
