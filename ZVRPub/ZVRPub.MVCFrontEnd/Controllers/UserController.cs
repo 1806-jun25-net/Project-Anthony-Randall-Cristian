@@ -76,7 +76,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             {
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
-                var uri = ServiceUri + "user";
+                var uri = ServiceUri + "account/register";
                 var request = new HttpRequestMessage(HttpMethod.Post, uri)
                 {
                     Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
