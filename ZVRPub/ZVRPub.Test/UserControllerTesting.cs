@@ -9,11 +9,11 @@ namespace ZVRPub.Test
 {
     public class UserControllerTesting
     {
-        [Fact]
-        public async Task UserIndexAsyncShouldReturnAllUsers()
-        {
-        }
+        //[Fact]
+        //public async Task UserIndexAsyncShouldReturnAllUsers()
+        //{
+        //}
 
-        public List<User>
+        //public List<User>
     }
 }
