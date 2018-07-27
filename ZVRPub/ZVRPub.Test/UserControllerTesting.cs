@@ -12,7 +12,6 @@ namespace ZVRPub.Test
         [Fact]
         public async Task UserIndexAsyncShouldReturnAllUsers()
         {
-            var mockRepo = new 
         }
 
         public List<User>
