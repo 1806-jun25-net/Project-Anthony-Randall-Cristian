@@ -11,22 +11,21 @@ using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class InventoryController : Controller
+    public class LocationController : Controller
     {
-
         private readonly static string ServiceUri = "http://localhost:56667/api/";
 
         public HttpClient HttpClient { get; }
 
-        public InventoryController(HttpClient httpClient)
+        public LocationController(HttpClient httpClient)
         {
             HttpClient = httpClient;
         }
 
-        // GET: Inventory
+        // GET: Location
         public async Task<ActionResult> IndexAsync(string searchString)
         {
-            var uri = ServiceUri + "inventory";
+            var uri = ServiceUri + "Location";
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
             try
@@ -40,11 +39,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 string jsonString = await response.Content.ReadAsStringAsync();
 
-                List<Inventory> inventory = JsonConvert.DeserializeObject<List<Inventory>>(jsonString);
+                List<Location> inventory = JsonConvert.DeserializeObject<List<Location>>(jsonString);
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    inventory = inventory.Where(s => s.IngredientName.Contains(searchString)).ToList();
+                    inventory = inventory.Where(s => s.City.Contains(searchString)).ToList();
                 }
 
 
@@ -57,34 +56,33 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-
-        // GET: Inventory/Details/5
+        // GET: Location/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Inventory/Create
+        // GET: Location/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Inventory/Create
+        // POST: Location/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Inventory NewInventory)
+        public async Task<ActionResult> Create(Location NewLocation)
         {
             if (!ModelState.IsValid)
             {
-                return View(NewInventory);
+                return View(NewLocation);
             }
 
             try
             {
-                string jsonString = JsonConvert.SerializeObject(NewInventory);
+                string jsonString = JsonConvert.SerializeObject(NewLocation);
 
-                var uri = ServiceUri + "Inventory";
+                var uri = ServiceUri + "Location";
                 var request = new HttpRequestMessage(HttpMethod.Post, uri)
                 {
                     Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
@@ -105,20 +103,38 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: Inventory/Edit/5
+        // GET: Location/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Inventory/Edit/5
+        // POST: Location/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Location NewLocation)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(NewLocation);
+            }
+
             try
             {
-                // TODO: Add update logic here
+                string jsonString = JsonConvert.SerializeObject(NewLocation);
+
+                var uri = ServiceUri + "Location";
+                var request = new HttpRequestMessage(HttpMethod.Put, uri)
+                {
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
+                };
+
+                var response = await HttpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
 
                 return RedirectToAction(nameof(IndexAsync));
             }
@@ -128,13 +144,13 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: Inventory/Delete/5
+        // GET: Location/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Inventory/Delete/5
+        // POST: Location/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

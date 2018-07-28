@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZVRPub.MVCFrontEnd.Models.Inventory>
+﻿@model IEnumerable<ZVRPub.MVCFrontEnd.Models.Location>
 
 @{
     ViewData["Title"] = "IndexAsync";
@@ -9,6 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 @using (Html.BeginForm())
 {
     <p>
@@ -16,6 +17,7 @@
         <input type="submit" class="btn btn-primary" navbar-linkvalue="Search" />
     </p>
 }
+
 <table class="table">
     <thead>
         <tr>
@@ -23,13 +25,16 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IngredientName)
+                @Html.DisplayNameFor(model => model.StreetAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IngredientType)
+                @Html.DisplayNameFor(model => model.PostalCode)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.States)
             </th>
             <th></th>
         </tr>
@@ -42,13 +47,16 @@
                     @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IngredientName)
+                    @Html.DisplayFor(modelItem => item.StreetAddress)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IngredientType)
+                    @Html.DisplayFor(modelItem => item.PostalCode)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.States)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
