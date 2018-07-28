@@ -7,13 +7,17 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace ZVRPub.MVCFrontEnd
 {
     public class Program
     {
+        private static readonly Logger log = LogManager.GetCurrentClassLogger();
+
         public static void Main(string[] args)
         {
+            log.Info("Beginning application - MVC frontend");
             BuildWebHost(args).Run();
         }
 
