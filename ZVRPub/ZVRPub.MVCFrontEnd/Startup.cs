@@ -35,7 +35,7 @@ namespace ZVRPub.MVCFrontEnd
             });
 
             log.Info("Register httpclient");
-            services.AddSingleton<HttpClient>();
+            services.AddSingleton(sp => new HttpClient(new HttpClientHandler { UseCookies = false }));
 
             log.Info("Register MVC and setting compatibility version");
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -12,6 +12,7 @@ namespace ZVRPub.MVCFrontEnd.Models
         public string Username { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string UserPassword { get; set; }
     }
 }
