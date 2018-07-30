@@ -110,6 +110,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 }
 
                 log.Info("HTTP status code 200 or 201. Redirecting to user index view");
+                TempData["username"] = NewUser.Username;
                 return RedirectToAction(nameof(IndexAsync));
             }
             catch(Exception ex)

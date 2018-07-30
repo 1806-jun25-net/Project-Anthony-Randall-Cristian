@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -12,19 +13,14 @@ using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class InventoryController : Controller
+    public class InventoryController : AServiceController
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
         private readonly static string ServiceUri = "http://localhost:56667/api/";
 
-        public HttpClient HttpClient { get; }
-
-        public InventoryController(HttpClient httpClient)
-        {
-            log.Info("Creating instance of inventory controller");
-            HttpClient = httpClient;
-        }
+        public InventoryController(HttpClient httpClient) : base(httpClient)
+        { }
 
         // GET: Inventory
         public async Task<ActionResult> IndexAsync()
