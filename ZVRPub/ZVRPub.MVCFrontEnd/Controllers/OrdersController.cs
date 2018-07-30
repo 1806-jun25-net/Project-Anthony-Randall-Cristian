@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -80,11 +81,29 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Order NewInventory)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(NewInventory);
+            }
+
             try
             {
-                // TODO: Add insert logic here
+                string jsonString = JsonConvert.SerializeObject(NewInventory);
+
+                var uri = ServiceUri + "Inventory";
+                var request = new HttpRequestMessage(HttpMethod.Post, uri)
+                {
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
+                };
+
+                var response = await HttpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
 
                 return RedirectToAction(nameof(IndexAsync));
             }
@@ -93,6 +112,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 return View();
             }
         }
+
 
         // GET: Orders/Edit/5
         public ActionResult Edit(int id)

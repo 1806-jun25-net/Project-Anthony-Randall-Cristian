@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -81,24 +82,38 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // POST: Inventory/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(Inventory NewInventory)
         {
-            log.Info("Response received");
+            if (!ModelState.IsValid)
+            {
+                return View(NewInventory);
+            }
+
             try
             {
-                // TODO: Add insert logic here
+                string jsonString = JsonConvert.SerializeObject(NewInventory);
 
-                log.Info("Redirecting to inventory index action method");
+                var uri = ServiceUri + "Inventory";
+                var request = new HttpRequestMessage(HttpMethod.Post, uri)
+                {
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
+                };
+
+                var response = await HttpClient.SendAsync(request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return View("Error");
+                }
+
                 return RedirectToAction(nameof(IndexAsync));
             }
-            catch(Exception ex)
+            catch
             {
-                log.Info("Exception thrown - exiting try block");
-                log.Info(ex.Message);
-                log.Info(ex.StackTrace);
                 return View();
             }
         }
+
 
         // GET: Inventory/Edit/5
         public ActionResult Edit(int id)
