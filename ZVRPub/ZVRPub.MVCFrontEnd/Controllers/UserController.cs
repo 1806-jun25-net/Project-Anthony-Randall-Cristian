@@ -24,7 +24,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> IndexAsync(string searchString)
         {
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/user");
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:56667/api/user");
 
             try
             {
@@ -98,7 +98,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
                 log.Info("Creating new url");
-                var request = CreateRequestToService(HttpMethod.Post, "api/user");
+                var request = CreateRequestToService(HttpMethod.Post, "http://localhost:56667/api/account/register");
                 request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
