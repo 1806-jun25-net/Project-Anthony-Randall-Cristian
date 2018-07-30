@@ -69,40 +69,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // GET: User/Details/5
         public async Task<ActionResult> DetailsAsync(int id)
         {
-            log.Info("Beginning creation of httprequest message");
-            var uri = ServiceUri + "user/" +id;
-            var request = new HttpRequestMessage(HttpMethod.Get, uri);
-
-            try
-            {
-                log.Info("Sending http request");
-                var response = await HttpClient.SendAsync(request);
-                log.Info("Request sent");
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    log.Info("Error: HTTP request sent back non-200 message");
-                    log.Info("Displaying error view");
-                    return View("Error");
-                }
-
-                log.Info("HTTP status code 200 - creating json string");
-                string jsonString = await response.Content.ReadAsStringAsync();
-
-                log.Info("Deserializing json string into list");
-                List<User> user = JsonConvert.DeserializeObject<List<User>>(jsonString);
-
-                log.Info("Redisplaying index view with given search string");
-                return View(user);
-            }
-            catch (HttpRequestException ex)
-            {
-                log.Info("Exception thrown - exiting try block");
-                log.Info(ex.Message);
-                log.Info(ex.StackTrace);
-                log.Info("Displaying error view");
-                return View("Error");
-            }
+              return View();
+            
         }
 
         // GET: User/Create
