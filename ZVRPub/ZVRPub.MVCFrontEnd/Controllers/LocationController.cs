@@ -21,7 +21,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         {
             HttpClient = httpClient;
         }
-
+        List<Location> loc { get; set; }
         // GET: Location
         public async Task<ActionResult> IndexAsync(string searchString)
         {
@@ -40,7 +40,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = await response.Content.ReadAsStringAsync();
 
                 List<Location> inventory = JsonConvert.DeserializeObject<List<Location>>(jsonString);
-
+                loc = JsonConvert.DeserializeObject<List<Location>>(jsonString);
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     inventory = inventory.Where(s => s.City.Contains(searchString)).ToList();

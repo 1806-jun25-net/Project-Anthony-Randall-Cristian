@@ -13,7 +13,7 @@ namespace ZVRPub.MVCFrontEnd.Models
         [Required]
         public DateTime OrderTime { get; set; }
         [Required]
-        public int LocationId { get; set; }
+        public string Location { get; set; }
         [Required]
         public int UserId { get; set; }
 
