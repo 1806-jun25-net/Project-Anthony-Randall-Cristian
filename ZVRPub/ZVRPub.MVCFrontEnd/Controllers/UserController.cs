@@ -13,28 +13,18 @@ using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class UserController : Controller
+    public class UserController : AServiceController
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-        private readonly static string ServiceUri = "http://localhost:56667/api/";
-
-        public HttpClient HttpClient { get; }
-         
-
-        public UserController(HttpClient httpClient)
-        {
-            log.Info("Creating instance of user controller");
-            HttpClient = httpClient;
-            log.Info("Instance created");
-        }
+       public UserController(HttpClient httpClient) : base(httpClient)
+        { }
 
         // GET: User
         public async Task<ActionResult> IndexAsync(string searchString)
         {
             log.Info("Beginning creation of httprequest message");
-            var uri = ServiceUri + "user";
-            var request = new HttpRequestMessage(HttpMethod.Get, uri);
+            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:56667/api/user");
 
             try
             {
@@ -108,14 +98,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
                 log.Info("Creating new url");
-                var uri = ServiceUri + "account/register";
-
-                log.Info("Creating new http request message");
-                var request = new HttpRequestMessage(HttpMethod.Post, uri)
-                {
-                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
-                };
-
+                var request = CreateRequestToService(HttpMethod.Post, "http://localhost:56667/api/account/register");
+                request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
 
