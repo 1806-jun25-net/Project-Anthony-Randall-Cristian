@@ -22,7 +22,6 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         { }
 
         // GET: Inventory
-        [Authorize]
         public async Task<ActionResult> IndexAsync()
         {
             log.Info("Beginning IndexAsync action method");
