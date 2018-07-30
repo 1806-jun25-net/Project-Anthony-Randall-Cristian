@@ -67,8 +67,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: Orders/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> DetailsAsync(int id)
         {
+
+            
             return View();
         }
 
@@ -81,24 +83,31 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Order NewInventory)
+        public async Task<ActionResult> Create(Order NewOrder)
         {
+
+            
+
+
+
             if (!ModelState.IsValid)
             {
-                return View(NewInventory);
+                return View(NewOrder);
             }
+
+            
 
             try
             {
-                string jsonString = JsonConvert.SerializeObject(NewInventory);
+                string jsonString = JsonConvert.SerializeObject(NewOrder);
 
-                var uri = ServiceUri + "Inventory";
-                var request = new HttpRequestMessage(HttpMethod.Post, uri)
+                var uri2 = ServiceUri + "orders";
+                var request2 = new HttpRequestMessage(HttpMethod.Post, uri2)
                 {
                     Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
                 };
 
-                var response = await HttpClient.SendAsync(request);
+                var response = await HttpClient.SendAsync(request2);
 
                 if (!response.IsSuccessStatusCode)
                 {
