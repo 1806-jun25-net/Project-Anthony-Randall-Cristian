@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using ZVRPub.MVCFrontEnd.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public class AccountController : AServiceController
@@ -83,6 +86,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 return View("Error");
             }
             PassCookiesToClient(apiResponse);
+            TempData["username"] = account.Username;
             return RedirectToAction("Index", "Home");
         }
         // GET: Account/Logout
@@ -110,6 +114,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 return View("Error");
             }
             PassCookiesToClient(apiResponse);
+            TempData["username"] = "";
             return RedirectToAction("Index", "Home");
         }
         private bool PassCookiesToClient(HttpResponseMessage apiResponse)
