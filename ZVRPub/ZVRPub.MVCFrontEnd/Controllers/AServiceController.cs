@@ -7,27 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public abstract class AServiceController : Controller
     {
         private static readonly Uri s_serviceUri = new Uri("http://localhost:56667/");
         protected static readonly string s_CookieName = "ZVRPubAuth";
-
         protected HttpClient HttpClient { get; }
-
         public AServiceController(HttpClient httpClient)
         {
             // don't forget to register HttpClient as a singleton service in Startup.cs,
             // with the right HttpClientHandler
             HttpClient = httpClient;
         }
-
         protected HttpRequestMessage CreateRequestToService(HttpMethod method, string uri, object body = null)
         {
             var apiRequest = new HttpRequestMessage(method, new Uri(s_serviceUri, uri));
-
             if (body != null)
             {
                 string jsonString = JsonConvert.SerializeObject(body);
@@ -35,12 +30,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
 
             string cookieValue = Request.Cookies[s_CookieName];
-
             if (cookieValue != null)
             {
                 apiRequest.Headers.Add("Cookie", new CookieHeaderValue(s_CookieName, cookieValue).ToString());
             }
-
             return apiRequest;
         }
     }

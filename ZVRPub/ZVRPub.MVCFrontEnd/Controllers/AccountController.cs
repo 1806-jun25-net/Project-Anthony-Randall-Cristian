@@ -61,7 +61,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserLogin account)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "http://localhost:56667/api/Account/Login", account);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/account/login", account);
             HttpResponseMessage apiResponse;
             try
             {
