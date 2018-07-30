@@ -6,32 +6,34 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NLog;
 using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class InventoryController : Controller
+    public class OrdersController : Controller
     {
+
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
         private readonly static string ServiceUri = "http://localhost:56667/api/";
 
         public HttpClient HttpClient { get; }
 
-        public InventoryController(HttpClient httpClient)
+        public OrdersController(HttpClient httpClient)
         {
-            log.Info("Creating instance of inventory controller");
+            log.Info("Creating instance of orders controller");
             HttpClient = httpClient;
         }
 
-        // GET: Inventory
+        // GET: Orders
         public async Task<ActionResult> IndexAsync()
         {
             log.Info("Beginning IndexAsync action method");
             log.Info("Setting url");
-            var uri = ServiceUri + "inventory";
+            var uri = ServiceUri + "Orders";
             log.Info("Obtaining new http request");
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
@@ -50,10 +52,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = await response.Content.ReadAsStringAsync();
 
                 log.Info("Creating list from json string");
-                List<Inventory> user = JsonConvert.DeserializeObject<List<Inventory>>(jsonString);
+                List<Order> order = JsonConvert.DeserializeObject<List<Order>>(jsonString);
 
                 log.Info("Displaying inventory index");
-                return View(user);
+                return View(order);
             }
             catch (HttpRequestException ex)
             {
@@ -64,25 +66,22 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-
-        // GET: Inventory/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int id)
         {
-            log.Info("Displaying information about single inventory item by id");
             return View();
         }
 
-        // GET: Inventory/Create
+        // GET: Orders/Create
         public ActionResult Create()
         {
-            log.Info("Displaying inventory creation view");
             return View();
         }
 
-        // POST: Inventory/Create
+        // POST: Orders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Inventory NewInventory)
+        public async Task<ActionResult> Create(Order NewInventory)
         {
             if (!ModelState.IsValid)
             {
@@ -115,60 +114,48 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
 
-        // GET: Inventory/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int id)
         {
-            log.Info("Displaying inventory edit view");
             return View();
         }
 
-        // POST: Inventory/Edit/5
+        // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
-            log.Info("Response received");
             try
             {
                 // TODO: Add update logic here
 
-                log.Info("Redirecting to inventory index view");
                 return RedirectToAction(nameof(IndexAsync));
             }
-            catch(Exception ex)
+            catch
             {
-                log.Info("Exception thrown - exiting try block");
-                log.Info(ex.Message);
-                log.Info(ex.StackTrace);
                 return View();
             }
         }
 
-        // GET: Inventory/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int id)
         {
-            log.Info("Displaying inventory delete view");
             return View();
         }
 
-        // POST: Inventory/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            log.Info("Response received");
             try
             {
                 // TODO: Add delete logic here
 
-                log.Info("Redirecting to inventory index view");
                 return RedirectToAction(nameof(IndexAsync));
             }
-            catch(Exception ex)
+            catch
             {
-                log.Info("Exception thrown - exiting try block");
-                log.Info(ex.Message);
-                log.Info(ex.StackTrace);
                 return View();
             }
         }

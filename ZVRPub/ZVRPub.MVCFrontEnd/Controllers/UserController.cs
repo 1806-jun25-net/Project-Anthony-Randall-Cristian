@@ -67,10 +67,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> DetailsAsync(int id)
         {
-            log.Info("Displaying info about user with given id number");
-            return View();
+              return View();
+            
         }
 
         // GET: User/Create

@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ZVRPub</title>
-    <link rel="icon" href="~/images/logo-preview-7b166697-23f8-4398-ade7-f179288702e1.jpg">
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrapUnited.css" />
@@ -36,8 +35,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="user" asp-action="indexasync">User</a></li>
                     <li><a asp-area="" asp-controller="inventory" asp-action="indexasync">Inventory</a></li>
-                    <li><a asp-area="" asp-controller="Location" asp-action="indexasync">Location</a></li>
-                    <li><a asp-area="" asp-controller="LogOn" asp-action="Index">LogIn</a></li>
+                    <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                 </ul>
             </div>
         </div>
