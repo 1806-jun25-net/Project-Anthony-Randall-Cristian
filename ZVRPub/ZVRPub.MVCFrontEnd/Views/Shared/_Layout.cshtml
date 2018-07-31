@@ -39,6 +39,7 @@
                     <li><a asp-area="" asp-controller="MenuPreBuiltHasOrders" asp-action="indexasync">MenuPreBuiltHasOrders</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    <li>Logged in as: @TempData.Peek("username")</li>
                 </ul>
             </div>
         </div>
