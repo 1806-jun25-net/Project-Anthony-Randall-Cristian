@@ -28,6 +28,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             try
             {
+                string CurrentUser = TempData.Peek("username").ToString();
+                if (CurrentUser.Equals(""))
+                {
+                    return View("AccessDenied");
+                }
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 log.Info("Request sent");
