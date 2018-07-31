@@ -89,16 +89,15 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> Create(Order NewOrder, string Location)
         {
 
-            LocationController loc = new LocationController(HttpClient);
 
-            
+           string Username =  TempData.Peek("username").ToString();
 
             var o = new Order()
             {
                 OrderId = NewOrder.OrderId, 
                 Location = Location,
                 OrderTime = DateTime.Now, 
-                UserId = NewOrder.UserId
+                Username = Username
             };
 
             if (!ModelState.IsValid)
@@ -115,9 +114,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 var uri2 = ServiceUri + "orders";
                 var request2 = new HttpRequestMessage(HttpMethod.Post, uri2)
                 {
-                    Content = new StringContent(jsonString+Location , Encoding.UTF8, "application/json"),
-                  
-                    
+                    Content = new StringContent(jsonString+Location , Encoding.UTF8, "application/json"),    
                 };
 
                 var response = await HttpClient.SendAsync(request2);
@@ -126,8 +123,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 {
                     return View("Error");
                 }
-
-                return RedirectToAction("PreBuilt","Creat");
+          
+                return RedirectToAction("Create", "MenuPreBuiltHasOrders");
             }
             catch
             {

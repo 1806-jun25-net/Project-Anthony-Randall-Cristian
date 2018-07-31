@@ -14,8 +14,8 @@ namespace ZVRPub.MVCFrontEnd.Models
         public DateTime OrderTime { get; set; }
         [Required]
         public string Location { get; set; }
-        [Required]
-        public int UserId { get; set; }
+        
+        public string  Username { get; set; }
 
     }
 }
