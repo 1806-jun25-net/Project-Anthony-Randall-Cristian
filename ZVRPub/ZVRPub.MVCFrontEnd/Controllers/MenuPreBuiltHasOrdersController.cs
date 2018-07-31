@@ -6,14 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NLog;
 using ZVRPub.MVCFrontEnd.Models;
 
 namespace ZVRPub.MVCFrontEnd.Controllers
 {
-    public class OrdersController : Controller
+    public class MenuPreBuiltHasOrdersController : Controller
     {
 
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
@@ -22,18 +21,18 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
         public HttpClient HttpClient { get; }
 
-        public OrdersController(HttpClient httpClient)
+        public MenuPreBuiltHasOrdersController (HttpClient httpClient)
         {
-            log.Info("Creating instance of orders controller");
+            log.Info("Creating instance of MenuPreBuiltHasOrdersController controller");
             HttpClient = httpClient;
         }
 
-        // GET: Orders
+        // GET: MenuPreBuiltHasOrders
         public async Task<ActionResult> IndexAsync()
         {
             log.Info("Beginning IndexAsync action method");
             log.Info("Setting url");
-            var uri = ServiceUri + "Orders";
+            var uri = ServiceUri + "MenuPreBuiltHasOrders";
             log.Info("Obtaining new http request");
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
@@ -52,10 +51,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = await response.Content.ReadAsStringAsync();
 
                 log.Info("Creating list from json string");
-                List<Order> order = JsonConvert.DeserializeObject<List<Order>>(jsonString);
+                List<MenuPrebuiltHasOrders> menuPre = JsonConvert.DeserializeObject<List<MenuPrebuiltHasOrders>>(jsonString);
 
                 log.Info("Displaying inventory index");
-                return View(order);
+                return View(menuPre);
             }
             catch (HttpRequestException ex)
             {
@@ -66,68 +65,46 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: Orders/Details/5
-        public async Task<ActionResult> DetailsAsync(int id)
+        // GET: MenuPreBuiltHasOrders/Details/5
+        public ActionResult Details(int id)
         {
-
-            
             return View();
         }
 
-        // GET: Orders/Create
-        public async Task<ActionResult> Create()
+        // GET: MenuPreBuiltHasOrders/Create
+        public ActionResult Create()
         {
-
             return View();
-
-            
         }
 
-        // POST: Orders/Create
+        // POST: MenuPreBuiltHasOrders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Order NewOrder, string Location)
+        public async Task<ActionResult> Create(MenuPrebuiltHasOrders NewPreOrder)
         {
-
-            LocationController loc = new LocationController(HttpClient);
-
-            
-
-            var o = new Order()
-            {
-                OrderId = NewOrder.OrderId, 
-                Location = Location,
-                OrderTime = DateTime.Now, 
-                UserId = NewOrder.UserId
-            };
-
             if (!ModelState.IsValid)
             {
-                return View(NewOrder);
+                return View(NewPreOrder);
             }
-
-            
 
             try
             {
-                string jsonString = JsonConvert.SerializeObject(o);
+                string jsonString = JsonConvert.SerializeObject(NewPreOrder);
 
-                var uri2 = ServiceUri + "orders";
-                var request2 = new HttpRequestMessage(HttpMethod.Post, uri2)
+                var uri = ServiceUri + "Location";
+                var request = new HttpRequestMessage(HttpMethod.Post, uri)
                 {
-                    Content = new StringContent(jsonString+Location , Encoding.UTF8, "application/json"),
-                  
-                    
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
                 };
 
-                var response = await HttpClient.SendAsync(request2);
+                var response = await HttpClient.SendAsync(request);
 
                 if (!response.IsSuccessStatusCode)
                 {
                     return View("Error");
                 }
 
-                return RedirectToAction("PreBuilt","Creat");
+                return RedirectToAction(nameof(IndexAsync));
             }
             catch
             {
@@ -135,14 +112,13 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-
-        // GET: Orders/Edit/5
+        // GET: MenuPreBuiltHasOrders/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Orders/Edit/5
+        // POST: MenuPreBuiltHasOrders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -159,13 +135,13 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
         }
 
-        // GET: Orders/Delete/5
+        // GET: MenuPreBuiltHasOrders/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Orders/Delete/5
+        // POST: MenuPreBuiltHasOrders/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
