@@ -9,11 +9,8 @@ namespace ZVRPub.MVCFrontEnd.Models
     public class MenuPrebuiltHasOrders
     {
 
-        public int Id { get; set; }
-        [Required]
-        public int MenuPreBuildId { get; set; }
-        [Required]
-        public int OrdersId { get; set; }
+        public string NameOfProduct { get; set; }
+        public int OrderId { get; set; }
 
     }
 }
