@@ -41,7 +41,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 if((int)response.StatusCode == 404)
                 {
-                    return View("AccessDenied");
+                    return View("AccessDeniedAdmin");
                 }
 
                 if (!response.IsSuccessStatusCode)
