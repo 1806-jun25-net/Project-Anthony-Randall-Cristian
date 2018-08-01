@@ -95,7 +95,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = await response.Content.ReadAsStringAsync();
 
                 log.Info("Deserializing json string into list");
-                var user = JsonConvert.DeserializeObject<List<UserDetails[]>>(jsonString);
+                var user = JsonConvert.DeserializeObject<User>(jsonString);
 
 
                 log.Info("Redisplaying index view with given search string");
