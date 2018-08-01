@@ -47,5 +47,7 @@ namespace ZVRPub.MVCFrontEnd.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
