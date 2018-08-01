@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,6 +108,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
+                if ((int)response.StatusCode == 418 )
+                {
+                    TempData["TakenInfo"] = "The username you are trying to use has been taken. Please select different username.";
+                    return RedirectToAction(nameof(Create));
+                }
 
                 if (!response.IsSuccessStatusCode)
                 {
