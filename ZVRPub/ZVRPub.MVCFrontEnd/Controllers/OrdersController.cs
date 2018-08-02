@@ -91,12 +91,12 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
 
            string Username =  TempData.Peek("username").ToString();
-
+            DateTime dateTime = DateTime.Now;
             var o = new Order()
             {
                 OrderId = NewOrder.OrderId, 
                 Location = Location,
-                OrderTime = DateTime.Now, 
+                OrderTime = dateTime, 
                 Username = Username
             };
 
@@ -123,8 +123,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 {
                     return View("Error");
                 }
-          
-                return RedirectToAction("Create", "MenuPreBuiltHasOrders");
+                TempData["OT"] = dateTime;
+                return RedirectToAction("Create", "MenuPreBuiltHasOrders", new {OrderTime = dateTime});
             }
             catch
             {
