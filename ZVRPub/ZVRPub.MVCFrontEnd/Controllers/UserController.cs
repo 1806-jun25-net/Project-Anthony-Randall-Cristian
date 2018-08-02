@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,7 +26,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> IndexAsync(string searchString)
         {
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:56667/api/user");
+            var request = CreateRequestToService(HttpMethod.Get, "http://localhost:56667/api/user");
 
             try
             {
@@ -37,6 +38,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 log.Info("Request sent");
+
+                if((int)response.StatusCode == 404)
+                {
+                    return View("AccessDeniedAdmin");
+                }
 
                 if (!response.IsSuccessStatusCode)
                 {
