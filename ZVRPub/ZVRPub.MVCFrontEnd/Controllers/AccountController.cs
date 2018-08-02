@@ -87,23 +87,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
             PassCookiesToClient(apiResponse);
             TempData["username"] = account.Username;
-
-            HttpRequestMessage apiRedirectRequest = CreateRequestToService(HttpMethod.Post, "api/account/redirect", account);
-            HttpResponseMessage apiRedirectResponse;
-            try
-            {
-                apiRedirectResponse = await HttpClient.SendAsync(apiRedirectRequest);
-            }
-            catch (AggregateException ex)
-            {
-                return View("Error");
-            }
-            if (!apiRedirectResponse.IsSuccessStatusCode)
-            {
-                string u = account.Username;
-                return RedirectToAction("IndexAsync", "User", new { searchString = u });
-            }
-            return Redirect("http://localhost:4200");
+            string u = account.Username;
+            return RedirectToAction("IndexAsync", "User", new { searchString = u });
         }
         // GET: Account/Logout
         public async Task<ActionResult> Logout()

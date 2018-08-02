@@ -128,12 +128,6 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 log.Info("HTTP status code 200 or 201. Redirecting to user index view");
                 TempData["username"] = NewUser.Username;
-
-                if (NewUser.IsAdmin)
-                {
-                    return Redirect("http://localhost4200");
-                }
-
                 return RedirectToAction(nameof(IndexAsync));
             }
             catch(Exception ex)
@@ -201,6 +195,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 log.Info(ex.StackTrace);
                 return View();
             }
+        }
+
+        public ActionResult Manager()
+        {
+            return Redirect("http://localhost:4200");
         }
     }
 }
