@@ -47,5 +47,8 @@ namespace ZVRPub.MVCFrontEnd.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Is User an Administrator?")]
+        public bool IsAdmin { get; set; }
     }
 }
