@@ -33,10 +33,8 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="user" asp-action="indexasync">User</a></li>
-                    <li><a asp-area="" asp-controller="inventory" asp-action="indexasync">Inventory</a></li>
-                    <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders</a></li>
-                    <li><a asp-area="" asp-controller="MenuPreBuiltHasOrders" asp-action="indexasync">MenuPreBuiltHasOrders</a></li>
+                    <li><a asp-area="" asp-controller="BigOrder" asp-action="Create">Orders</a></li>
+                   
                     <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                     <li>Logged in as: @TempData.Peek("username")</li>

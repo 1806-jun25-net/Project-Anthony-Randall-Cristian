@@ -58,8 +58,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             SelectListItem Tomato = new SelectListItem() { Text = "Tomato", Value = "Tomato", Selected = true };
             SelectListItem Lettuce = new SelectListItem() { Text = "Lettuce", Value = "Lettuce", Selected = false };
-            SelectListItem Mayo = new SelectListItem() { Text = "Mayo", Value = "Mayo", Selected = false };
-            SelectListItem Ketchup = new SelectListItem() { Text = "Ketchup", Value = "Ketchup", Selected = false };
+            SelectListItem Mayo = new SelectListItem() { Text = "Mayo", Value = "mayo", Selected = false };
+            SelectListItem Ketchup = new SelectListItem() { Text = "onions", Value = "onions", Selected = false };
             Inv.Add(Tomato);
             Inv.Add(Lettuce);
             Inv.Add(Mayo);
@@ -70,8 +70,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             SelectListItem Tomato1 = new SelectListItem() { Text = "Tomato", Value = "Tomato", Selected = true };
             SelectListItem Lettuce1 = new SelectListItem() { Text = "Lettuce", Value = "Lettuce", Selected = false };
-            SelectListItem Mayo1 = new SelectListItem() { Text = "Mayo", Value = "Mayo", Selected = false };
-            SelectListItem Ketchup1 = new SelectListItem() { Text = "Ketchup", Value = "Ketchup", Selected = false };
+            SelectListItem Mayo1 = new SelectListItem() { Text = "Mayo", Value = "mayo", Selected = false };
+            SelectListItem Ketchup1 = new SelectListItem() { Text = "onions", Value = "onions", Selected = false };
             Inv1.Add(Tomato1);
             Inv1.Add(Lettuce1);
             Inv1.Add(Mayo1);
@@ -81,8 +81,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             SelectListItem Tomato2 = new SelectListItem() { Text = "Tomato", Value = "Tomato", Selected = true };
             SelectListItem Lettuce2 = new SelectListItem() { Text = "Lettuce", Value = "Lettuce", Selected = false };
-            SelectListItem Mayo2 = new SelectListItem() { Text = "Mayo", Value = "Mayo", Selected = false };
-            SelectListItem Ketchup2 = new SelectListItem() { Text = "Ketchup", Value = "Ketchup", Selected = false };
+            SelectListItem Mayo2 = new SelectListItem() { Text = "Mayo", Value = "mayo", Selected = false };
+            SelectListItem Ketchup2 = new SelectListItem() { Text = "onions", Value = "onions", Selected = false };
             Inv2.Add(Tomato2);
             Inv2.Add(Lettuce2);
             Inv2.Add(Mayo2);
@@ -93,8 +93,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             SelectListItem Tomato3 = new SelectListItem() { Text = "Tomato", Value = "Tomato", Selected = true };
             SelectListItem Lettuce3 = new SelectListItem() { Text = "Lettuce", Value = "Lettuce", Selected = false };
-            SelectListItem Mayo3 = new SelectListItem() { Text = "Mayo", Value = "Mayo", Selected = false };
-            SelectListItem Ketchup3 = new SelectListItem() { Text = "Ketchup", Value = "Ketchup", Selected = false };
+            SelectListItem Mayo3 = new SelectListItem() { Text = "Mayo", Value = "mayo", Selected = false };
+            SelectListItem Ketchup3 = new SelectListItem() { Text = "onions", Value = "onions", Selected = false };
             Inv3.Add(Tomato3);
             Inv3.Add(Lettuce3);
             Inv3.Add(Mayo3);
@@ -105,14 +105,25 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             SelectListItem Tomato4 = new SelectListItem() { Text = "Tomato", Value = "Tomato", Selected = true };
             SelectListItem Lettuce4 = new SelectListItem() { Text = "Lettuce", Value = "Lettuce", Selected = false };
-            SelectListItem Mayo4 = new SelectListItem() { Text = "Mayo", Value = "Mayo", Selected = false };
-            SelectListItem Ketchup4 = new SelectListItem() { Text = "Ketchup", Value = "Ketchup", Selected = false };
+            SelectListItem Mayo4 = new SelectListItem() { Text = "Mayo", Value = "mayo", Selected = false };
+            SelectListItem Ketchup4 = new SelectListItem() { Text = "onions", Value = "onions", Selected = false };
             Inv4.Add(Tomato4);
             Inv4.Add(Lettuce4);
             Inv4.Add(Mayo4);
             Inv4.Add(Ketchup4);
             ViewBag.Inv4 = Inv4;
-            return View();
+
+            BigOrder bigOrder = new BigOrder()
+            {
+                QuantityBurger = 0, 
+                QuantityCocktail = 0, 
+                QuantityOfBurger = 0, 
+                QuantityDraft_Beer = 0, 
+                QuantityTaco = 0, 
+                QuantityWrap = 0 
+               
+            };
+            return View(bigOrder);
         }
 
         // POST: BigOrder/Create
@@ -153,7 +164,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(collection);
+                return View(BO);
             }
             try
             {
@@ -178,7 +189,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             }
             catch
             {
-                return View(collection);
+                return View(BO);
             }
         }
       

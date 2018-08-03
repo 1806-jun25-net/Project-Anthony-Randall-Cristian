@@ -3,7 +3,11 @@
 @{
     ViewData["Title"] = "Create";
 }
-
+<style>
+    #QtyBurger, #QtyWrap, #qtyTaco, #qtydraft, #qtyCocktail, #qtyCB {
+        display: none;
+    }
+</style>
 <h2>Create</h2>
 
 <h4>BigOrder</h4>
@@ -15,37 +19,42 @@
 
             @Html.DropDownList("locations", null, null)
             <div class="form-group">
-                <div class="checkbox">
+                <div class="checkbox" id="question">
                     <label>
-                        <input asp-for="wrap" /> @Html.DisplayNameFor(model => model.wrap)
+                        <input asp-for="wrap" onclick="myFunction('QtyWrap')" /> @Html.DisplayNameFor(model => model.wrap)
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="QtyWrap">
                 <label asp-for="QuantityWrap" class="control-label"></label>
                 <input asp-for="QuantityWrap" class="form-control" />
                 <span asp-validation-for="QuantityWrap" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <div class="checkbox">
+
+
                     <label>
-                        <input asp-for="burger" /> @Html.DisplayNameFor(model => model.burger)
+                        <input asp-for="burger" onclick="myFunction('QtyBurger')" /> @Html.DisplayNameFor(model => model.burger)
                     </label>
+
                 </div>
             </div>
-            <div class="form-group">
+
+            <div class="form-group" id="QtyBurger">
                 <label asp-for="QuantityBurger" class="control-label"></label>
                 <input asp-for="QuantityBurger" class="form-control" />
                 <span asp-validation-for="QuantityBurger" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Taco" /> @Html.DisplayNameFor(model => model.Taco)
+                        <input asp-for="Taco" onclick="myFunction('qtyTaco')" /> @Html.DisplayNameFor(model => model.Taco)
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="qtyTaco">
                 <label asp-for="QuantityTaco" class="control-label"></label>
                 <input asp-for="QuantityTaco" class="form-control" />
                 <span asp-validation-for="QuantityTaco" class="text-danger"></span>
@@ -53,11 +62,11 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Draft_Beer" /> @Html.DisplayNameFor(model => model.Draft_Beer)
+                        <input asp-for="Draft_Beer" onclick="myFunction('qtydraft')" /> @Html.DisplayNameFor(model => model.Draft_Beer)
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="qtydraft">
                 <label asp-for="QuantityDraft_Beer" class="control-label"></label>
                 <input asp-for="QuantityDraft_Beer" class="form-control" />
                 <span asp-validation-for="QuantityDraft_Beer" class="text-danger"></span>
@@ -65,12 +74,12 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="CockTail" /> @Html.DisplayNameFor(model => model.CockTail)
+                        <input asp-for="CockTail" onclick="myFunction('qtyCocktail')" /> @Html.DisplayNameFor(model => model.CockTail)
                     </label>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="qtyCocktail">
                 <label asp-for="QuantityCocktail" class="control-label"></label>
                 <input asp-for="QuantityCocktail" class="form-control" />
                 <span asp-validation-for="QuantityCocktail" class="text-danger"></span>
@@ -78,29 +87,30 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="CustomBurgerYes" /> @Html.DisplayNameFor(model => model.CustomBurgerYes)
+                        <input asp-for="CustomBurgerYes" onclick="myFunction('qtyCB')" /> @Html.DisplayNameFor(model => model.CustomBurgerYes)
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="qtyCB">
                 <label asp-for="Custom_Burger" class="control-label"></label>
                 <input asp-for="Custom_Burger" class="form-control" />
                 <span asp-validation-for="Custom_Burger" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="QuantityOfBurger" class="control-label"></label>
-                <input asp-for="QuantityOfBurger" class="form-control" />
-                <span asp-validation-for="QuantityOfBurger" class="text-danger"></span>
-            </div>
-         
+            @*<div class="form-group">
+            <label asp-for="QuantityOfBurger" class="control-label"></label>
+            <input asp-for="QuantityOfBurger" class="form-control" />
+            <span asp-validation-for="QuantityOfBurger" class="text-danger"></span>
+        </div>*@
+
             @Html.DropDownList("Inv", null, null)
             @Html.DropDownList("Inv1", null, null)
             @Html.DropDownList("Inv2", null, null)
             @Html.DropDownList("Inv3", null, null)
-            @Html.DropDownList("Inv4", null, null)
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
+            <button class="btn btn-default">   @Html.ActionLink("Cancel", "index", new { Controller = "Home", action = "Index" }) </button>
         </form>
     </div>
 </div>
@@ -110,5 +120,6 @@
 </div>
 
 @section Scripts {
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
