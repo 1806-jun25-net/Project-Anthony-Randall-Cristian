@@ -1,0 +1,51 @@
+﻿
+@model ZVRPub.MVCFrontEnd.Models.UserHasPremadeBurgerAndItemModel
+
+@{
+    ViewData["Title"] = "IndexAsync";
+
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@TempData.Peek("username")</div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                OrderID
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Time Ordered
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Order)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @foreach (var itemLoc in Model.Location)
+                    {
+                        @if (item.LocationId == itemLoc.Id)
+                        {
+                            @Html.DisplayFor(modelItem => itemLoc.City)
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderTime)
+                </td>
+            </tr>
+        }
+
+</table>
