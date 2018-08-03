@@ -37,7 +37,8 @@
                     <li><a asp-area="" asp-controller="inventory" asp-action="indexasync">Inventory</a></li>
                     <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders</a></li>
                     <li><a asp-area="" asp-controller="MenuPreBuiltHasOrders" asp-action="indexasync">MenuPreBuiltHasOrders</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">User Login</a></li>
+                    <li><a href="http://localhost:4200/login">Admin Login</a></li>
                     <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                     <li>Logged in as: @TempData.Peek("username")</li>
                 </ul>
