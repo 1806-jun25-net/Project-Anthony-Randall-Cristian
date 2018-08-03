@@ -48,7 +48,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 {
                     log.Info("Error: HTTP request sent back non-200 message");
                     log.Info("Displaying error view");
-                    return View("Error");
+                    return View("AccessDenied");
                 }
 
                 log.Info("HTTP status code 200 - creating json string");
