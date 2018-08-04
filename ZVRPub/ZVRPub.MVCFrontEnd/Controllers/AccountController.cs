@@ -88,7 +88,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
             PassCookiesToClient(apiResponse);
             TempData["username"] = account.Username;
             string u = account.Username;
-            return RedirectToAction("IndexAsync", "User", new { searchString = u });
+            return RedirectToAction("Detailsasync", "User");
         }
         // GET: Account/Logout
         public async Task<ActionResult> Logout()
