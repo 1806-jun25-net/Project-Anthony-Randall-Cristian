@@ -133,7 +133,16 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         {
             
             string Username = TempData.Peek("username").ToString();
-
+            if (Username == null || Username == "")
+            {
+                ViewBag.NoLogIn = "Please Log in";
+                return RedirectToAction("Login", "Account");
+            }
+            if (collection.CustomBurgerYes && (collection.Custom_Burger == null || collection.Custom_Burger == "" ))
+            {
+                ViewBag.NoLogIn = "Please Name Your burger";
+                return View(collection); 
+            }
 
             var BO = new BigOrder
             {
