@@ -43,7 +43,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public ActionResult Create()
         {
             List<SelectListItem> location = new List<SelectListItem>();
-
+            ViewBag.NoLogIn = "";
             SelectListItem Reston = new SelectListItem() { Text = "Reston", Value = "Reston", Selected = true };
             SelectListItem New_York = new SelectListItem() { Text = "New York", Value = "New York", Selected = false };
             SelectListItem Tampa = new SelectListItem() { Text = "Tampa", Value = "Tampa", Selected = false };
@@ -131,17 +131,21 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(BigOrder collection, string locations, string Inv, string Inv1,string Inv2, string Inv3, string Inv4)
         {
-            
-            string Username = TempData.Peek("username").ToString();
-            if (Username == null || Username == "")
+            string Username = "";
+            try
+            {
+                 Username = TempData.Peek("username").ToString();
+            }
+            catch
             {
                 ViewBag.NoLogIn = "Please Log in";
                 return RedirectToAction("Login", "Account");
             }
+           
             if (collection.CustomBurgerYes && (collection.Custom_Burger == null || collection.Custom_Burger == "" ))
             {
-                ViewBag.NoLogIn = "Please Name Your burger";
-                return View(collection); 
+                
+                return RedirectToAction("Create", "BigOrder"); 
             }
 
             var BO = new BigOrder
@@ -193,9 +197,9 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 }
 
                 TempData["orderPlaced"] = "Your order has been placed!";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("IndexAsync", "UserHasPremadeBurgers");
 
-               // return RedirectToAction(nameof(Index));
+               
             }
             catch
             {
