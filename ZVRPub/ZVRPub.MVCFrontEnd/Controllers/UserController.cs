@@ -81,12 +81,15 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // GET: User/Details/5
         public async Task<ActionResult> DetailsAsync(int id)
         {
+            if(id == 0)
+            {
+                return View("AccessDeniedProfile");
+            }
             log.Info("Beginning creation of httprequest message");
             var request = new HttpRequestMessage(HttpMethod.Get, "api/user/" + id);
 
             try
             {
-                
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 log.Info("Request sent");
