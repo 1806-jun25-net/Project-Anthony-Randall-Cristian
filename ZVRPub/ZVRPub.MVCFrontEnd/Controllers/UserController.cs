@@ -79,14 +79,14 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: User/Details/5
-        public async Task<ActionResult> DetailsAsync(int id)
+        public async Task<ActionResult> DetailsAsync(string username = "")
         {
-            if(id == 0)
+            if (TempData.Peek("username") != null)
             {
-                return View("AccessDeniedProfile");
+                username = (string)TempData.Peek("username");
             }
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/user/" + id);
+            var request = CreateRequestToService(HttpMethod.Get, "api/user/username?=" + username);
 
             try
             {
@@ -96,6 +96,10 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    if (username.Equals(""))
+                    {
+                        return View("AccessDeniedProfile");
+                    }
                     log.Info("Error: HTTP request sent back non-200 message");
                     log.Info("Displaying error view");
                     return View("Error");
