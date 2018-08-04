@@ -13,7 +13,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public class LocationController : Controller
     {
-        private readonly static string ServiceUri = "http://localhost:56667/api/";
+        private readonly static string ServiceUri = "https://project2zvrapi.azurewebsites.net/api/";
 
         public HttpClient HttpClient { get; }
 

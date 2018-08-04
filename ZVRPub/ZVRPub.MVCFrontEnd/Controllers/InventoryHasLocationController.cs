@@ -23,7 +23,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> IndexAsync(string searchString)
         {
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:56667/api/inventoryHasLocation");
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://project2zvrapi.azurewebsites.net/api/inventoryHasLocation");
 
             try
             {

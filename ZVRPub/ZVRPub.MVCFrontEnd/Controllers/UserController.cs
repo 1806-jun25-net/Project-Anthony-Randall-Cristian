@@ -82,7 +82,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> DetailsAsync(int id)
         {
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:56667/api/user/" + id);
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/user/" + id);
 
             try
             {

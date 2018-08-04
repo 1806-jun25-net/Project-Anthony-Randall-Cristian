@@ -18,7 +18,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-        private readonly static string ServiceUri = "http://localhost:56667/api/";
+        private readonly static string ServiceUri = "https://project2zvrapi.azurewebsites.net/api/";
 
         public HttpClient HttpClient { get; }
 
