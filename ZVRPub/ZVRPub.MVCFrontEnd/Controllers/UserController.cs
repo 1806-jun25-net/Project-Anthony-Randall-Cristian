@@ -79,20 +79,27 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: User/Details/5
-        public async Task<ActionResult> DetailsAsync(int id)
+        public async Task<ActionResult> DetailsAsync(string username = "")
         {
+            if (TempData.Peek("username") != null)
+            {
+                username = (string)TempData.Peek("username");
+            }
             log.Info("Beginning creation of httprequest message");
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/user/" + id);
+            var request = CreateRequestToService(HttpMethod.Get, "api/user/username?=" + username);
 
             try
             {
-                
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 log.Info("Request sent");
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    if (username.Equals(""))
+                    {
+                        return View("AccessDeniedProfile");
+                    }
                     log.Info("Error: HTTP request sent back non-200 message");
                     log.Info("Displaying error view");
                     return View("Error");
@@ -163,7 +170,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 log.Info("HTTP status code 200 or 201. Redirecting to user index view");
                 TempData["username"] = NewUser.Username;
-                return RedirectToAction(nameof(IndexAsync));
+                return RedirectToAction(nameof(DetailsAsync));
             }
             catch(Exception ex)
             {

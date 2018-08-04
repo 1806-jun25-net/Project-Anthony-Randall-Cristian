@@ -191,7 +191,8 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 {
                     return View("Error");
                 }
-               
+
+                TempData["orderPlaced"] = "Your order has been placed!";
                 return RedirectToAction("Index", "Home");
 
                // return RedirectToAction(nameof(Index));
