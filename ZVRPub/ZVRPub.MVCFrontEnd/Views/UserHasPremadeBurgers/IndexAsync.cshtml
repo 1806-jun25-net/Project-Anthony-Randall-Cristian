@@ -23,6 +23,9 @@
             <th>
                 Time Ordered
             </th>
+            <th>
+                Burger Ordered
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -45,7 +48,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderTime)
                 </td>
+                <td>
+                    @foreach (var itemBurgerName in Model.PreBuiltHasOrder)
+                    {
+                        if (item.OrderId == itemBurgerName.OrdersId)
+                        {
+                            @foreach (var itemBurgerNameName in Model.PreBuilt)
+                            {
+                                if (itemBurgerNameName.Id == itemBurgerName.MenuPreBuildId)
+                                {
+                                    @Html.DisplayFor(modelItem => itemBurgerNameName.NameOfMenu)
+
+                                }
+
+                            }
+
+                        }
+                    }
+                </td>
             </tr>
         }
 
-</table>
+            </table>

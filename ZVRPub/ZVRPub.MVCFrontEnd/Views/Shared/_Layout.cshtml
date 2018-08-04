@@ -32,15 +32,33 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="user" asp-action="indexasync">User</a></li>
-                    <li><a asp-area="" asp-controller="inventory" asp-action="indexasync">Inventory</a></li>
-                    <li><a asp-area="" asp-controller="inventoryHasLocation" asp-action="indexasync">inventory Location</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a asp-area="" asp-controller="user" asp-action="indexasync">User</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Inventory<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a asp-area="" asp-controller="inventory" asp-action="indexasync">Inventory</a></li>
+                            <li><a asp-area="" asp-controller="inventoryHasLocation" asp-action="indexasync">inventory Location</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
                     <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders</a></li>
-                    <li><a asp-area="" asp-controller="UserHasPremadeBurgers" asp-action="indexasync">Profile</a></li>
                     <li><a asp-area="" asp-controller="MenuPreBuiltHasOrders" asp-action="indexasync">MenuPreBuiltHasOrders</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                    <li><a asp-area="">Logged in as: @TempData.Peek("username")</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Logged in as: @TempData.Peek("username") <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a asp-area="" asp-controller="UserHasPremadeBurgers" asp-action="indexasync">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
