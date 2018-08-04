@@ -10,7 +10,7 @@ namespace ZVRPub.MVCFrontEnd.Models
     {
 
         public string NameOfProduct { get; set; }
-        public int OrderId { get; set; }
+        public DateTime OrderTime { get; set; }
 
     }
 }

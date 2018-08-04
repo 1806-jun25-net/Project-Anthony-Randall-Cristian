@@ -26,16 +26,16 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         public async Task<ActionResult> IndexAsync(string searchString)
         {
             log.Info("Beginning creation of httprequest message");
-            var request = CreateRequestToService(HttpMethod.Get, "http://localhost:56667/api/user");
+            var request = CreateRequestToService(HttpMethod.Get, "api/user");
 
             try
             {
-                string CurrentUser = TempData.Peek("username").ToString();
-                if (CurrentUser.Equals(""))
-                {
-                    return View("AccessDenied");
-                }
-                log.Info("Sending http request");
+                //string CurrentUser = TempData.Peek("username").ToString();
+                //if (CurrentUser.Equals(""))
+                //{
+                //    return View("AccessDenied");
+                //}
+                //log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 log.Info("Request sent");
 
@@ -48,7 +48,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 {
                     log.Info("Error: HTTP request sent back non-200 message");
                     log.Info("Displaying error view");
-                    return View("Error");
+                    return View("AccessDenied");
                 }
 
                 log.Info("HTTP status code 200 - creating json string");
@@ -145,7 +145,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
                 log.Info("Creating new url");
-                var request = CreateRequestToService(HttpMethod.Post, "http://localhost:56667/api/account/register");
+                var request = CreateRequestToService(HttpMethod.Post, "api/account/register");
                 request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
@@ -230,6 +230,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 log.Info(ex.StackTrace);
                 return View();
             }
+        }
+
+        public ActionResult Manager()
+        {
+            return Redirect("http://localhost:4200");
         }
     }
 }

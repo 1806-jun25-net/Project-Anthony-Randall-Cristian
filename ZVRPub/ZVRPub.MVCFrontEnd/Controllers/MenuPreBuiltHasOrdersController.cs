@@ -72,7 +72,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
 
         // GET: MenuPreBuiltHasOrders/Create
-        public ActionResult Create()
+        public ActionResult Create(DateTime OrderTime)
         {
             return View();
         }
@@ -82,6 +82,14 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(MenuPrebuiltHasOrders NewPreOrder)
         {
+
+            DateTime orderTime = (DateTime) TempData.Peek("OT");
+            MenuPrebuiltHasOrders po = new MenuPrebuiltHasOrders
+            {
+                NameOfProduct = NewPreOrder.NameOfProduct,
+                OrderTime = orderTime
+
+            };
             if (!ModelState.IsValid)
             {
                 return View(NewPreOrder);
@@ -89,9 +97,9 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
             try
             {
-                string jsonString = JsonConvert.SerializeObject(NewPreOrder);
+                string jsonString = JsonConvert.SerializeObject(po);
 
-                var uri = ServiceUri + "Location";
+                var uri = ServiceUri + "MenuPreBuiltHasOrders";
                 var request = new HttpRequestMessage(HttpMethod.Post, uri)
                 {
                     Content = new StringContent(jsonString, Encoding.UTF8, "application/json")
@@ -106,7 +114,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 return RedirectToAction(nameof(IndexAsync));
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
