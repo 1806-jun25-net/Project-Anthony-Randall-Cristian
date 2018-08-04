@@ -101,12 +101,12 @@
             <input asp-for="QuantityOfBurger" class="form-control" />
             <span asp-validation-for="QuantityOfBurger" class="text-danger"></span>
         </div>*@
-
-            @Html.DropDownList("Inv", null, null)
-            @Html.DropDownList("Inv1", null, null)
-            @Html.DropDownList("Inv2", null, null)
-            @Html.DropDownList("Inv3", null, null)
-
+            <div>
+                @Html.DropDownList("Inv", null, null)
+                @Html.DropDownList("Inv1", null, null)
+                @Html.DropDownList("Inv2", null, null)
+                @Html.DropDownList("Inv3", null, null)
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
