@@ -48,9 +48,13 @@
                             <li class="divider"></li>
                         </ul>
                     </li>
-                    <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders</a></li>
-                    <li><a asp-area="" asp-controller="MenuPreBuiltHasOrders" asp-action="indexasync">MenuPreBuiltHasOrders</a></li>
-                    <li><a asp-area="" asp-controller="BigOrder" asp-action="Create">Orders</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Orders<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a asp-area="" asp-controller="orders" asp-action="indexasync">Orders List</a></li>
+                            <li><a asp-area="" asp-controller="BigOrder" asp-action="Create">Order</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Logged in as: @TempData.Peek("username") <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
