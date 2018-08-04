@@ -73,3 +73,6 @@ input {
     margin: 4px 2px;
     cursor: pointer;
 }
+#QtyBurger {
+    display: none;
+}
