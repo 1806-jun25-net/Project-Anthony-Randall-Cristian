@@ -193,7 +193,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return View("Error");
+                    return View("AccessDeniedProfile");
                 }
 
                 TempData["orderPlaced"] = "Your order has been placed!";
