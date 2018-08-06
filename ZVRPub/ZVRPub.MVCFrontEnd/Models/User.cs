@@ -12,6 +12,7 @@ namespace ZVRPub.MVCFrontEnd.Models
         public int UserId { get; set; }
 
         [Required]
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string Username { get; set; }
 
         [Required]
