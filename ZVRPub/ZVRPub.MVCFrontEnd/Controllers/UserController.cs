@@ -152,13 +152,19 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
                 log.Info("Creating new url");
-                var request = CreateRequestToService(HttpMethod.Post, "api/account/register");
+                var request = CreateRequestToService(HttpMethod.Post, "http://localhost:56667/api/Account/Register");
                 request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
                 if ((int)response.StatusCode == 418 )
                 {
                     TempData["TakenInfo"] = "The username you are trying to use has been taken. Please select different username.";
+                    return RedirectToAction(nameof(Create));
+                }
+
+                if ((int)response.StatusCode == 400)
+                {
+                    TempData["TakenInfo"] = "Your password must be at least 6 characters long with at least one capital letter, one number, and one special character.";
                     return RedirectToAction(nameof(Create));
                 }
 
