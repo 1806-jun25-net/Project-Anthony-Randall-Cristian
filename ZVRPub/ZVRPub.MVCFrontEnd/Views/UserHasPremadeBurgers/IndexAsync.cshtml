@@ -26,47 +26,54 @@
             <th>
                 Burger Ordered
             </th>
+            <th>
+                Price
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Order)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderId)
-                </td>
-                <td>
-                    @foreach (var itemLoc in Model.Location)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @foreach (var itemLoc in Model.Location)
+                {
+                    @if (item.LocationId == itemLoc.Id)
                     {
-                        @if (item.LocationId == itemLoc.Id)
-                        {
-                            @Html.DisplayFor(modelItem => itemLoc.City)
-                        }
+                        @Html.DisplayFor(modelItem => itemLoc.City)
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderTime)
-                </td>
-                <td>
-                    @foreach (var itemBurgerName in Model.PreBuiltHasOrder)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTime)
+            </td>
+            <td>
+                @foreach (var itemBurgerName in Model.PreBuiltHasOrder)
+                {
+                    if (item.OrderId == itemBurgerName.OrdersId)
                     {
-                        if (item.OrderId == itemBurgerName.OrdersId)
+                        @foreach (var itemBurgerNameName in Model.PreBuilt)
                         {
-                            @foreach (var itemBurgerNameName in Model.PreBuilt)
+                            if (itemBurgerNameName.Id == itemBurgerName.MenuPreBuildId)
                             {
-                                if (itemBurgerNameName.Id == itemBurgerName.MenuPreBuildId)
-                                {
-                                    @Html.DisplayFor(modelItem => itemBurgerNameName.NameOfMenu)
-
-                                }
+                                @Html.DisplayFor(modelItem => itemBurgerNameName.NameOfMenu)
 
                             }
 
                         }
+
                     }
-                </td>
-            </tr>
+                }
+            </td>
+
+            <th>
+                @Model.Price.ToString()
+            </th>
+        </tr>
         }
 
-            </table>
+</table>
