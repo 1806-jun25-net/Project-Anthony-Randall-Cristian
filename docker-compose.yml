@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mvc:
+    image: justcallmenines/proj2mvc:0.1
+    networks:
+      - net
+  api:
+    image: justcallmenines/proj2api:0.1
+    networks:
+      - net
+  angular:
+    image: justcallmenines/proj2angular:0.1
+    networks:
+      - net
+networks:
+  net:
