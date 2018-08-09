@@ -11,7 +11,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public abstract class AServiceController : Controller
     {
-        private static readonly Uri s_serviceUri = new Uri("https://project2zvrapi.azurewebsites.net/");
+        private static readonly Uri s_serviceUri = new Uri("http://192.168.99.100:5002/");
         protected static readonly string s_CookieName = "ZVRPubAuth";
         protected HttpClient HttpClient { get; }
         public AServiceController(HttpClient httpClient)
