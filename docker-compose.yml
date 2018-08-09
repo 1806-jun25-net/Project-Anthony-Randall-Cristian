@@ -2,15 +2,47 @@ version: "3"
 services:
   mvc:
     image: justcallmenines/proj2mvc:0.1
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
+      - angular
     networks:
       - net
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
   api:
     image: justcallmenines/proj2api:0.1
     networks:
       - net
+    env_file: secrets.env
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
   angular:
     image: justcallmenines/proj2angular:0.1
+    ports:
+      - "5001:80"
     networks:
       - net
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
 networks:
   net:
