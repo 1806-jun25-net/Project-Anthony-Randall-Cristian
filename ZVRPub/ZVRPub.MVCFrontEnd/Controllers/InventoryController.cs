@@ -19,7 +19,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
         private readonly static string ServiceUri = "https://project2zvrapi.azurewebsites.net/api/";
 
-        public InventoryController(HttpClient httpClient) : base(httpClient)
+        public InventoryController(HttpClient httpClient, Settings settings) : base(httpClient, settings)
         { }
 
         // GET: Inventory

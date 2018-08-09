@@ -23,7 +23,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         // then that would be every request.
 
         private readonly Logger log = LogManager.GetCurrentClassLogger();
-        public AccountController(HttpClient httpClient) : base(httpClient)
+        public AccountController(HttpClient httpClient, Settings settings) : base(httpClient, settings)
         { }
         // GET: Account/Register
         public ViewResult Register()

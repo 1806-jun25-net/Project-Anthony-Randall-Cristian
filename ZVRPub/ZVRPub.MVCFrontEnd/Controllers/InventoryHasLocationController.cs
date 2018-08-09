@@ -15,7 +15,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-        public InventoryHasLocationController(HttpClient httpClient) : base(httpClient)
+        public InventoryHasLocationController(HttpClient httpClient, Settings settings) : base(httpClient, settings)
         { }
 
         // GET: InventoryHasLocation

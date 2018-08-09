@@ -17,7 +17,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
         private readonly static string ServiceUri = "http://192.168.99.100:5002/api/";
 
-        public UserHasPremadeBurgersController(HttpClient httpClient) : base(httpClient)
+        public UserHasPremadeBurgersController(HttpClient httpClient, Settings settings) : base(httpClient, settings)
         { }
 
         // GET: UserHasPremadeBurgers

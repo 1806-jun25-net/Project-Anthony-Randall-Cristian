@@ -19,7 +19,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-       public UserController(HttpClient httpClient) : base(httpClient)
+       public UserController(HttpClient httpClient, Settings settings) : base(httpClient, settings)
         { }
 
         // GET: User
