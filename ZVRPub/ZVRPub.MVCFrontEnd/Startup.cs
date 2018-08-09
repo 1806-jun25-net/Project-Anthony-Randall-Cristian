@@ -40,6 +40,9 @@ namespace ZVRPub.MVCFrontEnd
             log.Info("Register MVC and setting compatibility version");
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             log.Info("Registration complete");
+
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<Settings>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

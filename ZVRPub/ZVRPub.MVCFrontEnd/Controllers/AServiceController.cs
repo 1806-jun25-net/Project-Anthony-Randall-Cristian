@@ -11,14 +11,16 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 {
     public abstract class AServiceController : Controller
     {
-        private static readonly Uri s_serviceUri = new Uri("http://192.168.99.100:5002/");
+        public static Settings Settings { get; set; }
+        private static readonly Uri s_serviceUri = Settings.ServiceUri;
         protected static readonly string s_CookieName = "ZVRPubAuth";
         protected HttpClient HttpClient { get; }
-        public AServiceController(HttpClient httpClient)
+        public AServiceController(HttpClient httpClient, Settings settings)
         {
             // don't forget to register HttpClient as a singleton service in Startup.cs,
             // with the right HttpClientHandler
             HttpClient = httpClient;
+            Settings = settings;
         }
         protected HttpRequestMessage CreateRequestToService(HttpMethod method, string uri, object body = null)
         {
