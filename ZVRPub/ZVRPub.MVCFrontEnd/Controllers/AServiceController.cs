@@ -12,7 +12,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
     public abstract class AServiceController : Controller
     {
         public static Settings Settings { get; set; }
-        private static readonly Uri s_serviceUri = Settings.ServiceUri;
+        //private static readonly Uri s_serviceUri = Settings.ServiceUri;
         protected static readonly string s_CookieName = "ZVRPubAuth";
         protected HttpClient HttpClient { get; }
         public AServiceController(HttpClient httpClient, Settings settings)
@@ -24,7 +24,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         }
         protected HttpRequestMessage CreateRequestToService(HttpMethod method, string uri, object body = null)
         {
-            var apiRequest = new HttpRequestMessage(method, new Uri(s_serviceUri, uri));
+            var apiRequest = new HttpRequestMessage(method, new Uri(Settings.ServiceUri, uri));
             if (body != null)
             {
                 string jsonString = JsonConvert.SerializeObject(body);

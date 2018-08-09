@@ -7,10 +7,14 @@ namespace ZVRPub.MVCFrontEnd
 {
     public class Settings
     {
-        public Uri ServiceUri { get; private set; }
+        public Uri ServiceUri { get; set; }
         public Settings(IConfiguration configuration)
         {
             ServiceUri = new Uri(configuration["ServiceUris:api"]);
+            if(ServiceUri == null)
+            {
+                Console.WriteLine("ServiceUri is null");
+            }
         }
     }
 }

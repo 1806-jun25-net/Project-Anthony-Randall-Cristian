@@ -1,16 +1,16 @@
 version: "3"
 services:
   mvc:
-    image: justcallmenines/proj2mvc:0.1
+    image: justcallmenines/proj2mvc:0.2
     ports:
       - "5000:80"
-    depends_on:
-      - api
-      - angular
     networks:
       - net
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ServiceUris__api: "http://api"
     deploy:
-      replicas: 3
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -19,11 +19,13 @@ services:
 
   api:
     image: justcallmenines/proj2api:0.1
+    ports:
+      - "5002:80"
     networks:
       - net
     env_file: secrets.env
     deploy:
-      replicas: 3
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s
@@ -37,7 +39,7 @@ services:
     networks:
       - net
     deploy:
-      replicas: 3
+      replicas: 1
       restart_policy:
         condition: on-failure
         delay: 5s

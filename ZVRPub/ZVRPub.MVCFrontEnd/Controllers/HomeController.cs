@@ -17,6 +17,11 @@ namespace ZVRPub.MVCFrontEnd.Controllers
 
         //UserManager<IdentityUser> _userManager;
 
+        public Settings Settings { get; set; }
+        public HomeController(Settings settings)
+        {
+            Settings = settings;
+        }
 
         public IActionResult Index()
         {

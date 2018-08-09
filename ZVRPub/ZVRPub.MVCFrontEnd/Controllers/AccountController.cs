@@ -64,7 +64,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(UserLogin account)
         {
-            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "api/account/login", account);
+            HttpRequestMessage apiRequest = CreateRequestToService(HttpMethod.Post, "/api/account/login", account);
             HttpResponseMessage apiResponse;
             try
             {
@@ -75,7 +75,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 log.Info("Exception thrown");
                 log.Info(ex.Message);
                 log.Info(ex.StackTrace);
-                return View("Error");
+                return View("Login");
             }
             if (!apiResponse.IsSuccessStatusCode)
             {
