@@ -15,7 +15,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
     {
         private static readonly Logger log = LogManager.GetCurrentClassLogger();
 
-        private readonly static string ServiceUri = "https://project2zvrapi.azurewebsites.net/api/";
+        private readonly static string ServiceUri = http://192.168.99.100:5002/api/";
 
         public UserHasPremadeBurgersController(HttpClient httpClient) : base(httpClient)
         { }

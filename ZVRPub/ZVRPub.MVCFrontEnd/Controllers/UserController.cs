@@ -152,7 +152,7 @@ namespace ZVRPub.MVCFrontEnd.Controllers
                 string jsonString = JsonConvert.SerializeObject(NewUser);
 
                 log.Info("Creating new url");
-                var request = CreateRequestToService(HttpMethod.Post, "https://project2zvrapi.azurewebsites.net/api/Account/Register");
+                var request = CreateRequestToService(HttpMethod.Post, "api/Account/Register");
                 request.Content = new StringContent(jsonString, Encoding.UTF8, "application/json");
                 log.Info("Sending http request");
                 var response = await HttpClient.SendAsync(request);
