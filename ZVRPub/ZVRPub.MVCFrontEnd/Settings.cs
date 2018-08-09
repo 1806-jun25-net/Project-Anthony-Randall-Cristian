@@ -10,7 +10,7 @@ namespace ZVRPub.MVCFrontEnd
         public Uri ServiceUri { get; private set; }
         public Settings(IConfiguration configuration)
         {
-            ServiceUri = new Uri(configuration["ServiceUris:api"]);
+            ServiceUri = new Uri(configuration["ServiceUris:angular"]);
         }
     }
 }
